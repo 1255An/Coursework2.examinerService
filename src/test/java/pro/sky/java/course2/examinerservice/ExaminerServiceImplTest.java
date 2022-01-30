@@ -1,5 +1,7 @@
 package pro.sky.java.course2.examinerservice;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,8 +13,10 @@ import pro.sky.java.course2.examinerservice.data.Question;
 import pro.sky.java.course2.examinerservice.services.ExaminerServiceImpl;
 import pro.sky.java.course2.examinerservice.services.QuestionService;
 
+import java.util.Collection;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static pro.sky.java.course2.examinerservice.DataTest.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,10 +31,17 @@ public class ExaminerServiceImplTest {
     public void setUp() {
         Mockito.when(questionService.getAll()).thenReturn
                 (List.of(new Question(QUESTION_1, ANSWER_1),
-                        new Question(QUESTION_2, ANSWER_2)));
+                        new Question(QUESTION_2, ANSWER_2),
+                        new Question(QUESTION_3, ANSWER_3)));
     }
-    @Test
-    public void getQuestionsTest () {
 
+    @Test
+    public void getQuestionsTest() {
+        Collection<Question> actual = out.getQuestions(3);
+        Collection<Question> expected = List.of(
+                new Question(QUESTION_1, ANSWER_1),
+                new Question(QUESTION_2, ANSWER_2),
+                new Question(QUESTION_3, ANSWER_3));
+        assertTrue(CollectionUtils.isEqualCollection(expected, actual));
     }
 }
