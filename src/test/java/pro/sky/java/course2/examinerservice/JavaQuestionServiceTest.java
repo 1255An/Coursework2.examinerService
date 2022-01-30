@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static pro.sky.java.course2.examinerservice.DataTest.*;
 
 public class JavaQuestionServiceTest {
     private Question question1;
@@ -23,9 +24,9 @@ public class JavaQuestionServiceTest {
 
     @BeforeEach
     public void setUp() {
-        question1 = new Question("Что такое java", "язык программирования");
-        question2 = new Question("Принцип написания названий переменных в java", "camelCase");
-        question3 = new Question("Какой оператор используется для создания экземпляра класса", "new");
+        question1 = new Question(QUESTION_1, ANSWER_1);
+        question2 = new Question(QUESTION_2, ANSWER_2);
+        question3 = new Question(QUESTION_3, ANSWER_3);
 
         out = new JavaQuestionService();
 
@@ -45,29 +46,29 @@ public class JavaQuestionServiceTest {
     }
 
     @Test
-    public void addQuestionIfAlreadyExists () {
+    public void addQuestionIfAlreadyExists() {
         assertThrows(QuestionExistsException.class, () -> out.add(question1));
     }
 
     @Test
-    public void removeTest () {
+    public void removeTest() {
         out.remove(question1);
         Collection<Question> expected = out.getAll();
         Collection<Question> actual = new HashSet<>();
         actual.add(question2);
         actual.add(question3);
-        assertTrue(CollectionUtils.isEqualCollection(expected,actual));
+        assertTrue(CollectionUtils.isEqualCollection(expected, actual));
     }
 
     @Test
-    public void removeTestIfNotFound () {
+    public void removeTestIfNotFound() {
         out.remove(question1);
         assertThrows(QuestionNotFoundException.class, () -> out.remove(question1));
     }
 
     @Test
-    public void getAllQuestionsNotNull () {
-        Collection <Question> expected= out.getAll();
+    public void getAllQuestionsNotNull() {
+        Collection<Question> expected = out.getAll();
         assertNotNull(expected);
     }
 }

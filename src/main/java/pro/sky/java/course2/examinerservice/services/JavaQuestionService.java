@@ -5,10 +5,7 @@ import pro.sky.java.course2.examinerservice.data.Question;
 import pro.sky.java.course2.examinerservice.exceptions.QuestionExistsException;
 import pro.sky.java.course2.examinerservice.exceptions.QuestionNotFoundException;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class JavaQuestionService implements QuestionService {
@@ -57,9 +54,11 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
+        List<Question> questionsList = new ArrayList<>();
+        questionsList.addAll(Set.copyOf(questions));
         Random random = new Random();
-        int x = random.nextInt(6);
-        return null;
+        int x = random.nextInt(questionsList.size());
+        return questionsList.get(x);
     }
 
     private boolean questionExists(Question question) {
