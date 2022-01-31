@@ -7,4 +7,8 @@ public interface DataTest {
     String ANSWER_2 = "camelCase";
     String QUESTION_3 = "Какое пространство памяти хранит переменные примитивных типов";
     String ANSWER_3 = "Стэк";
+    String QUESTION_4 = "Что является шаблоном для создания объекта";
+    String ANSWER_4 = "Класс";
+    String EMPTY_STRING = "";
+    String BLANK_STRING = " ";
 }
