@@ -7,7 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import pro.sky.java.course2.examinerservice.data.Question;
-import pro.sky.java.course2.examinerservice.exceptions.QuestionExistsException;
 import pro.sky.java.course2.examinerservice.exceptions.QuestionNotFoundException;
 import pro.sky.java.course2.examinerservice.services.JavaQuestionService;
 import pro.sky.java.course2.examinerservice.services.QuestionService;
@@ -46,11 +45,6 @@ public class JavaQuestionServiceTest {
         actual.add(question2);
         actual.add(question3);
         assertTrue(CollectionUtils.isEqualCollection(expected, actual));
-    }
-
-    @Test
-    public void addQuestionIfAlreadyExistsTest() {
-        assertThrows(QuestionExistsException.class, () -> out.add(question1));
     }
 
     @ParameterizedTest
