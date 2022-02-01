@@ -50,10 +50,6 @@ public class JavaQuestionService implements QuestionService {
         return question;
     }
 
-    private boolean questionExist(Question question) {
-        return questions.contains(question);
-    }
-
     @Override
     public Collection<Question> getAll() {
         return Set.copyOf(questions);
@@ -71,5 +67,9 @@ public class JavaQuestionService implements QuestionService {
     private boolean isInputValueNotNull(String question, String answer) {
         return (question == null || question.trim().isEmpty() ||
                 answer == null || answer.trim().isEmpty());
+    }
+
+    private boolean questionExist(Question question) {
+        return questions.contains(question);
     }
 }
