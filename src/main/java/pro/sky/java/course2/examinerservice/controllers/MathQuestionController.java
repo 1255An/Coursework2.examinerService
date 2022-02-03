@@ -5,34 +5,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.java.course2.examinerservice.data.Question;
-import pro.sky.java.course2.examinerservice.services.JavaQuestionService;
+import pro.sky.java.course2.examinerservice.services.MathQuestionService;
 
 import java.util.Collection;
-
 @RestController
-@RequestMapping("/exam/java")
-public class JavaQuestionController {
-    private final JavaQuestionService javaQuestionService;
+@RequestMapping("exam/java")
+public class MathQuestionController {
 
-    public JavaQuestionController(JavaQuestionService javaQuestionService) {
-        this.javaQuestionService = javaQuestionService;
+    private final MathQuestionService mathQuestionService;
+
+    public MathQuestionController(MathQuestionService mathQuestionService) {
+        this.mathQuestionService = mathQuestionService;
     }
 
-    @GetMapping("/add")
+    @GetMapping("/addMath")
     public String add(@RequestParam String question, @RequestParam String answer) {
-        Question result = javaQuestionService.add(question, answer);
+        Question result = mathQuestionService.add(question, answer);
         return getMessage(result, "successfully added");
     }
 
-    @GetMapping("/remove")
+    @GetMapping("/removeMath")
     public String remove(@RequestParam String question, @RequestParam String answer) {
-        Question result = javaQuestionService.remove(question, answer);
+        Question result = mathQuestionService.remove(question, answer);
         return getMessage(result, "successfully removed");
     }
 
-    @GetMapping("getAll")
+    @GetMapping("getAllMath")
     public Collection<Question> getAll() {
-        return javaQuestionService.getAll();
+        return mathQuestionService.getAll();
     }
 
     private String getMessage(Question question, String status) {
@@ -43,4 +43,5 @@ public class JavaQuestionController {
                 "' ",
                 status);
     }
+
 }

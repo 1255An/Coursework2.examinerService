@@ -4,19 +4,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import pro.sky.java.course2.examinerservice.data.Question;
-import pro.sky.java.course2.examinerservice.exceptions.QuestionNotFoundException;
-import pro.sky.java.course2.examinerservice.repositories.JavaQuestionRepository;
+import pro.sky.java.course2.examinerservice.repositories.MathQuestionRepository;
 
 import java.util.*;
 
 @Service
-@Qualifier("JavaQuestionService")
-public class JavaQuestionService implements QuestionService {
+@Qualifier("MathQuestionService")
+public class MathQuestionService implements QuestionService {
 
-    private JavaQuestionRepository javaQuestionRepository;
+    private MathQuestionRepository mathQuestionsRepository;
 
-    public JavaQuestionService(JavaQuestionRepository javaQuestionRepository) {
-        this.javaQuestionRepository = javaQuestionRepository;
+    public MathQuestionService(MathQuestionRepository mathQuestionsRepository) {
+        this.mathQuestionsRepository = mathQuestionsRepository;
     }
 
     @Override
@@ -32,7 +31,7 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question add(Question question) {
-        this.javaQuestionRepository.add(question);
+        mathQuestionsRepository.add(question);
         return question;
     }
 
@@ -46,16 +45,13 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question remove(Question question) {
-//        if (!questionExist(question)) {
-//            throw new QuestionNotFoundException();
-//        }
-        this.javaQuestionRepository.remove(question);
+        mathQuestionsRepository.remove(question);
         return question;
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Set.copyOf(this.javaQuestionRepository.getAll());
+        return Set.copyOf(mathQuestionsRepository.getAll());
     }
 
     @Override
@@ -72,7 +68,7 @@ public class JavaQuestionService implements QuestionService {
                 answer == null || answer.trim().isEmpty());
     }
 
-//    private boolean questionExist(Question question) {
-//        return this.javaQuestionRepository.getAll().contains(question);
-//    }
+    private boolean questionExist(Question question) {
+        return mathQuestionsRepository.getAll().contains(question);
+    }
 }
