@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import pro.sky.java.course2.examinerservice.data.Question;
+import pro.sky.java.course2.examinerservice.exceptions.QuestionNotFoundException;
 import pro.sky.java.course2.examinerservice.repositories.MathQuestionRepository;
 
 import java.util.*;
@@ -66,9 +67,5 @@ public class MathQuestionService implements QuestionService {
     private boolean isInputValueNotNull(String question, String answer) {
         return (question == null || question.trim().isEmpty() ||
                 answer == null || answer.trim().isEmpty());
-    }
-
-    private boolean questionExist(Question question) {
-        return mathQuestionsRepository.getAll().contains(question);
     }
 }

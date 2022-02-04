@@ -26,7 +26,8 @@ public class ExaminerServiceImpl implements ExaminerService {
     public Collection<Question> getQuestions(int amount) {
         Collection<Question> result = new HashSet<>();
         Random rand = new Random();
-        if (amount > (questionService1.getAll().size() + questionService2.getAll().size())) {
+        int sizeOfAllQuestions = questionService1.getAll().size() + questionService2.getAll().size();
+        if (amount > sizeOfAllQuestions) {
             throw new IllegalQuestionsAmount();
         } else {
             while (result.size() < amount) {

@@ -32,7 +32,7 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question add(Question question) {
-        this.javaQuestionRepository.add(question);
+        javaQuestionRepository.add(question);
         return question;
     }
 
@@ -46,16 +46,13 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question remove(Question question) {
-//        if (!questionExist(question)) {
-//            throw new QuestionNotFoundException();
-//        }
-        this.javaQuestionRepository.remove(question);
+        javaQuestionRepository.remove(question);
         return question;
     }
 
     @Override
     public Collection<Question> getAll() {
-        return Set.copyOf(this.javaQuestionRepository.getAll());
+        return Set.copyOf(javaQuestionRepository.getAll());
     }
 
     @Override
@@ -71,8 +68,4 @@ public class JavaQuestionService implements QuestionService {
         return (question == null || question.trim().isEmpty() ||
                 answer == null || answer.trim().isEmpty());
     }
-
-//    private boolean questionExist(Question question) {
-//        return this.javaQuestionRepository.getAll().contains(question);
-//    }
 }
