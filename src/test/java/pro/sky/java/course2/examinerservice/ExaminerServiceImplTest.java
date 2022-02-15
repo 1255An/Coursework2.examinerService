@@ -57,6 +57,6 @@ public class ExaminerServiceImplTest {
 
     @Test
     public void IllegalQuestionsAmountTest() {
-        assertThrows(IllegalQuestionsAmount.class, () -> out.getQuestions(8));
+        assertThrows(IllegalQuestionsAmount.class, () -> out.getQuestions(15));
     }
 }

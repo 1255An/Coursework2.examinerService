@@ -10,7 +10,7 @@ import pro.sky.java.course2.examinerservice.services.MathQuestionService;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("exam/java")
+@RequestMapping("exam/java/math")
 public class MathQuestionController {
 
     private final MathQuestionService mathQuestionService;
@@ -19,19 +19,19 @@ public class MathQuestionController {
         this.mathQuestionService = mathQuestionService;
     }
 
-    @GetMapping("/addMath")
+    @GetMapping("/add")
     public String add(@RequestParam String question, @RequestParam String answer) {
         Question result = mathQuestionService.add(question, answer);
         return getMessage(result, "successfully added");
     }
 
-    @GetMapping("/removeMath")
+    @GetMapping("/remove")
     public String remove(@RequestParam String question, @RequestParam String answer) {
         Question result = mathQuestionService.remove(question, answer);
         return getMessage(result, "successfully removed");
     }
 
-    @GetMapping("getAllMath")
+    @GetMapping("getAll")
     public Collection<Question> getAll() {
         return mathQuestionService.getAll();
     }
